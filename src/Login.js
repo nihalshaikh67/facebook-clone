@@ -1,7 +1,7 @@
 import React from 'react'
 import './css/login.css'
 import { auth, provider } from './firebase'
-import logos from './images/Nihal-pic.jpg'
+import logo from './images/logo.png'
 import { useStateValue } from './Stateprovider'
 
 const Login = () => {
@@ -25,9 +25,9 @@ const signIn = ()=>{
     return (
         <div className="login_wrapper">
         <div className="login">
-            <img src="https://1000logos.net/wp-content/uploads/2021/04/Facebook-logo.png" alt="img"/>
+            <img src={logo} alt="img"/>
             <h2>Sign in with Facebook</h2>
-            <button onClick={signIn}>Login with Facebook</button>
+            <button onClick={signIn}>Login with Facebook.</button>
         </div>
     </div>
     )
