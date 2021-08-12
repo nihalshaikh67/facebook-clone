@@ -26,7 +26,7 @@ const signIn = ()=>{
         <div className="login_wrapper">
         <div className="login">
             <img src={logo} alt="img"/>
-            <h2>Sign in with Facebook</h2>
+            <h2>Sign In with Facebook</h2>
             <button onClick={signIn}>Login with Facebook.</button>
         </div>
     </div>
