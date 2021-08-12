@@ -1,0 +1,124 @@
+.messageSender{
+    display: flex;
+    background-color: #fff;
+    width: 100%;
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: 30px;
+    box-shadow: 4px 2px 10px #ccc;
+    flex-direction:column;
+    box-sizing: border-box;
+
+
+}
+.messageSender_top{
+    display: flex;
+    align-items: center;
+    flex:1;
+}
+
+.messageSender_top form{
+    flex:1;
+    background-color: whitesmoke;
+    padding: 10px;
+    margin-left: 10px;
+    border-radius: 20px;
+}
+
+.messageSender_top form input{
+    width: 100%;
+    background: transparent;
+    border: 0;
+    outline: 0;
+
+
+}
+.messageSender_bottom{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid lightgrey;
+    margin-top: 15px;
+
+}
+
+.messangerOption{
+    display: flex;
+    align-items: center;
+    align-items: center;
+    padding: 5px 20px;
+    border-radius: 20px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+.messangerOption:hover{
+    background-color: whitesmoke;
+}
+.messangerOption p{
+margin-left: 10px;
+}
+
+.modal_pop{
+    top: 50%;
+    background-color: white;
+    width: 500px;
+    margin:0px auto;
+    position: relative;
+    transform: translateY(-50%);
+    padding: 10px;
+    border-radius: 10px;
+    outline: 0;
+}
+
+.modalHeading{
+    text-align: center;
+    border-bottom:1px solid lightgrey;
+    height: 40px;
+}
+.modalHeading .MuiIconButton-root{
+    position:absolute;
+    top: 0px;
+    right: 5px;
+}
+.modalHeader_top{
+    display: flex;
+    padding: 15px 0px;
+    align-items: center;
+
+}
+.modalHeader_top h5{
+    margin-left: 10px;
+}
+.modalBody textarea{
+    width: 100%;
+    min-height: 100px;
+    border: 0px;
+    outline: 0;
+    font-size: 25px;
+    padding: 10px 0px;
+    letter-spacing: 1px;
+    font-family: sans-serif;
+
+}
+
+.modalFooter{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid rgb(206, 193, 193);
+    margin-bottom: 20px;
+    padding: 0px 10px;
+
+}
+.post_submit{
+    background-color: #2391fa;
+    width: 100%;
+    padding: 10px 10px;
+    color: white;
+    border: 0px;
+    outline: 0;
+    text-transform: uppercase;
+    font-size: 16px;
+    cursor: pointer;
+
+}
