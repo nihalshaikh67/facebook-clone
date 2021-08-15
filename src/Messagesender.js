@@ -10,19 +10,82 @@ import './css/messagesende.css';
 // import InsertEmoticonIcon from '@material-ui/icons/InsertEmoticon';
 import { lightGreen } from '@material-ui/core/colors';
 import { useStateValue } from './Stateprovider';
+import { db , storage } from './firebase';
+import firebase from 'firebase';
 
 
 const Messagesender = () => {
-    const [{user},dispatch] = useStateValue();
+    const [{ user }, dispatch] = useStateValue();
+
     const [open, setOpen] = useState(false);
+
+    const [image,setImage] = useState("");
+
+    const [message,setMessage] = useState("");
+    const [progress,setProgress]  =useState(0)
 
     const handleClose = () => {
         setOpen(false);
     }
 
-    const handleOpen = () =>{
+    const handleOpen = () => {
         setOpen(true);
     }
+
+    const uploadFileWithClick = () => {
+        document.getElementById("imageFile").click()
+    }
+
+    const handleChange = (e) =>{
+           if(e.target.files[0])
+           {
+               setImage(e.target.files[0]);
+           }
+      
+    }
+
+    const handleUpload =(e)=>{
+        e.preventDefault();
+        if(image ===""){
+            db.collection("posts").add({
+                timestamp : firebase.firestore.FieldValue.serverTimestamp(),
+                message : message,
+                username : user.displayName,
+                photoURL:user.photoURL
+            })
+        }
+        else{
+         const uploadTask = storage.ref(`images/${image.name}`).put(image);
+         uploadTask.on(
+             "state_changed",
+             (snapshot)=>{
+               const progress = Math.round((snapshot.bytesTransferred/snapshot.totalBytes)*100);
+               setProgress(progress);
+             },
+             (error)=>{
+                 console.log(error);
+                 alert(error.message);
+             },
+             ()=>{
+                 storage.ref("images").child(image.name).getDownloadURL().then(url=>{
+                    db.collection("posts").add({
+                        timestamp : firebase.firestore.FieldValue.serverTimestamp(),
+                        message : message,
+                        username : user.displayName,
+                        photoURL:user.photoURL,
+                        image :url
+                    });
+                    handleClose();
+                    setMessage("");
+                    setImage("");
+                    setProgress(0);
+                 })
+             }
+         )
+        }
+       
+    }
+
 
     return (
         <>
@@ -36,29 +99,35 @@ const Messagesender = () => {
                             </IconButton>
                         </div>
                         <div className="modalHeader_top">
-                            <Avatar src={user.photoURL}/>
+                            <Avatar src={user.photoURL} />
                             <h5>{user.displayName}</h5>
                         </div>
                         <div className="modalBody">
-                            <textarea rows="5" placeholder="What's on your mind Nihal ? " ></textarea>
+                            <textarea rows="5" placeholder="What's on your mind Nihal ? " onChange={e=>setMessage((e.target.value))} >{message}</textarea>
                         </div>
                         <div className="modalFooter">
                             <div className="modalFooter_Left">
                                 <h4>Add to your post</h4>
                             </div>
                             <div className="modalFooter_Right">
-                               <IconButton>
-                                  <PhotoLibraryIcon fontSize="large" style={{color:'green'}}/>
-                               </IconButton>
-                               <IconButton>
-                                  <VideoCallIcon fontSize="large"  style={{color:'red'}}/>
-                               </IconButton>
-                               <IconButton>
-                                  <InsertEmoticonIcon fontSize="large"  style={{color:'#ffb100'}}/>
-                               </IconButton>
+                                <IconButton onClick={uploadFileWithClick}>
+                                    <PhotoLibraryIcon fontSize="large" style={{ color: 'green' }} />
+                                </IconButton>
+                                <input type="file" id="imageFile" onChange={handleChange} style={{ display: 'none' }} />
+                                <IconButton>
+                                    <VideoCallIcon fontSize="large" style={{ color: 'red' }} />
+                                </IconButton>
+                                <IconButton>
+                                    <InsertEmoticonIcon fontSize="large" style={{ color: '#ffb100' }} />
+                                </IconButton>
                             </div>
                         </div>
-                        <input type="submit" className="post_submit" value="POST"></input>
+                     {image !=="" &&   <h2 style={{fontSize:"15px",marginBottom:"20px",color:"green"}}>Image is added and will be displayed after clicking on post button</h2>}
+                        {
+                            progress !="" &&    <progress value={progress} max="100" style={{width:"100%",marginBottom:"20px"}}/>
+                        }
+                     
+                        <input type="submit" onClick={handleUpload} className="post_submit" value="POST"></input>
                     </form>
                 </div>
             </Modal>
@@ -66,7 +135,7 @@ const Messagesender = () => {
 
                 <div className="messageSender_top">
 
-                    <Avatar  src={user.photoURL} />
+                    <Avatar src={user.photoURL} />
                     <form>
                         <input type="text" placeholder="What's on your mind Nihal" onClick={handleOpen} />
                     </form>

@@ -8,11 +8,10 @@ const Login = () => {
 const[{user}, dispatch] = useStateValue();
 const signIn = ()=>{
     auth.signInWithPopup(provider).then(result=>{
-        alert("hello");
           var credential = result.credential;
-          alert("hello1");
+
           const photoURL = `${result.user.photoURL}?access_token=${credential.accessToken}`;
-          alert("hello2");
+         
            dispatch({
                type:"SET_USER",
                user:{
@@ -20,14 +19,7 @@ const signIn = ()=>{
                    photoURL:photoURL
                }
            })
-           alert("hello3");
-    },error=>{
-        console.log(error);
-        alert("hello4");
-    } ).catch(error=>{
-        console.log(error);
-        alert("hello4");
-    })
+    }).catch(error=>console.log(error))
 }
 
     return (
