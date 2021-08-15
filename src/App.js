@@ -14,7 +14,7 @@ function App() {
   return (
     <>
     {
-      !user ? (<Login/>) : (
+      user ? (<Login/>) : (
         <div className="App">
         <Header />
   

@@ -47,8 +47,8 @@ const Header = () => {
 
             <div className="header_right">
                 <div className="header_info">
-                    <Avatar src={user.photoURL}/>
-                    <h5>{user.displayName}</h5>
+                    <Avatar src="https://media-exp1.licdn.com/dms/image/C5603AQHQxjjVGlBRnw/profile-displayphoto-shrink_100_100/0/1616425669542?e=1634774400&v=beta&t=hvgz5ChGDYr8HYNjQ3NO4VAyS7KajX-un4QrasyTtNw"/>
+                    <h5>Nihal Shaikh</h5>
                 </div>
 
                 <IconButton>

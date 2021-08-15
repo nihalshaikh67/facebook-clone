@@ -50,8 +50,8 @@ const Messagesender = () => {
             db.collection("posts").add({
                 timestamp : firebase.firestore.FieldValue.serverTimestamp(),
                 message : message,
-                username : user.displayName,
-                photoURL:user.photoURL
+                username : "Nihal Shaikh",
+                photoURL: "https://media-exp1.licdn.com/dms/image/C5603AQHQxjjVGlBRnw/profile-displayphoto-shrink_100_100/0/1616425669542?e=1634774400&v=beta&t=hvgz5ChGDYr8HYNjQ3NO4VAyS7KajX-un4QrasyTtNw"
             })
         }
         else{
@@ -71,8 +71,8 @@ const Messagesender = () => {
                     db.collection("posts").add({
                         timestamp : firebase.firestore.FieldValue.serverTimestamp(),
                         message : message,
-                        username : user.displayName,
-                        photoURL:user.photoURL,
+                        username : "Nihal Shaikh",
+                        photoURL:"https://media-exp1.licdn.com/dms/image/C5603AQHQxjjVGlBRnw/profile-displayphoto-shrink_100_100/0/1616425669542?e=1634774400&v=beta&t=hvgz5ChGDYr8HYNjQ3NO4VAyS7KajX-un4QrasyTtNw",
                         image :url
                     });
                     handleClose();
@@ -99,8 +99,8 @@ const Messagesender = () => {
                             </IconButton>
                         </div>
                         <div className="modalHeader_top">
-                            <Avatar src={user.photoURL} />
-                            <h5>{user.displayName}</h5>
+                        <Avatar src="https://media-exp1.licdn.com/dms/image/C5603AQHQxjjVGlBRnw/profile-displayphoto-shrink_100_100/0/1616425669542?e=1634774400&v=beta&t=hvgz5ChGDYr8HYNjQ3NO4VAyS7KajX-un4QrasyTtNw"/>
+                    <h5>Nihal Shaikh</h5>
                         </div>
                         <div className="modalBody">
                             <textarea rows="5" placeholder="What's on your mind Nihal ? " onChange={e=>setMessage((e.target.value))} >{message}</textarea>
@@ -135,7 +135,8 @@ const Messagesender = () => {
 
                 <div className="messageSender_top">
 
-                    <Avatar src={user.photoURL} />
+                <Avatar src="https://media-exp1.licdn.com/dms/image/C5603AQHQxjjVGlBRnw/profile-displayphoto-shrink_100_100/0/1616425669542?e=1634774400&v=beta&t=hvgz5ChGDYr8HYNjQ3NO4VAyS7KajX-un4QrasyTtNw"/>
+                   
                     <form>
                         <input type="text" placeholder="What's on your mind Nihal" onClick={handleOpen} />
                     </form>
